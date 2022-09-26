@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-digitalizacion-titulos
+  labels:
+    app: api-gcba
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-gcba
+      tier: backend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: api-gcba
+        tier: backend
+    spec:
+      containers:
+      - image: 893199769917.dkr.ecr.us-east-1.amazonaws.com/api-digitalizacion-titulos-stage:TAG
+        name: api-digitalizacion-titulos
+        ports:
+        - containerPort: 3000
+        
